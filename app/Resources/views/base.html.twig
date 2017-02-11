@@ -1,0 +1,185 @@
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Famicity</title>
+    <link href="{{ asset('templates/css/menu.css')}}" rel='stylesheet' type='text/css' />
+    <link href="{{ asset('templates/css/bootstrap.css')}}" rel='stylesheet' type='text/css' />
+    <link href="{{ asset('templates/css/style.css')}}" rel='stylesheet' type='text/css' />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <script src="{{ asset('templates/js/jquery.min.js')}}"></script>
+    <!--<script src="{{ asset('templates/js/jquery.easydropdown.js')}}"></script>-->
+    <!--start slider -->
+    <link rel="stylesheet" href="{{ asset('templates/css/fwslider.css')}}" media="all">
+    <script src="{{ asset('templates/js/jquery-ui.min.js')}}"></script>
+    <script src="{{ asset('templates/js/fwslider.js')}}"></script>
+    <!--end slider -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".dropdown img.flag").addClass("flagvisibility");
+
+            $(".dropdown dt a").click(function() {
+                $(".dropdown dd ul").toggle();
+            });
+
+            $(".dropdown dd ul li a").click(function() {
+                var text = $(this).html();
+                $(".dropdown dt a span").html(text);
+                $(".dropdown dd ul").hide();
+                $("#result").html("Selected value is: " + getSelectedValue("sample"));
+            });
+
+            function getSelectedValue(id) {
+                return $("#" + id).find("dt a span.value").html();
+            }
+
+            $(document).bind('click', function(e) {
+                var $clicked = $(e.target);
+                if (! $clicked.parents().hasClass("dropdown"))
+                    $(".dropdown dd ul").hide();
+            });
+
+            $("#flagSwitcher").click(function() {
+                $(".dropdown img.flag").toggleClass("flagvisibility");
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="header">
+    {% block header %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="header-left">
+                    <div class="menu">
+                        <ul id="menu-deroulant">
+                            <li><a href="{{  path('index')}}">accueil</a>
+                            <li><a href="#">sortir en famille</a>
+                                <ul class="sous-menu">
+                                    <li><a href="{{  path('parc')}}">parc</a></li>
+                                    <li><a href="{{  path('restaurant')}}">restauration</a></li>
+                                    <li><a href="{{ path('cirque')}}">Cirque</a></li>
+                                    <li><a href="{{ path('cinema')}}">cinema</a></li>
+                                </ul>
+                            <li><a href="{{  path('restaurant')}}">spéciale weekend</a>
+                            <li><a href="{{  path('cirque')}}">bon plan</a>
+                            <li><a href="{{ path('Famille') }}">Nos familles </a>
+                        </ul>
+                        <script type="text/javascript" src="{{ asset('templates/js/responsive-nav.js')}}"></script>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <ul  class="icon1 sub-icon1 profile_img">
+
+                    <li class="list_desc"><h4><a href="#">
+                                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <li class="profile-pic">
+                        <a href="javascript:void(0)"> <img  src="{{asset ('/photo_membre/' ~ app.user.image ~ '')}}"  class="img-circle" width="36"><span class="hidden-xs hidden-sm">{{ app.user.username|trans({'%username%': app.user.username}, 'FOSUserBundle') }} </span><i class="fa fa-angle-down fa-indicator"></i> </a>
+                    </li>
+                    {% endif %}
+                    </a></h4><span class="actual">
+                         </span></li>
+
+
+
+                </ul>
+                </li>
+                </ul>
+                <div class="header_right">
+
+                    <!-- start search-->
+                    <div class="search-box">
+                        <div id="sb-search" class="sb-search">
+                            <form>
+                                <input class="sb-search-input" placeholder="Enter your search term..." type="search" name="search" id="search">
+                                <input class="sb-search-submit" type="submit" value="">
+                                <span class="sb-icon-search"> </span>
+                            </form>
+                        </div>
+                    </div>
+                    <!----search-scripts---->
+                    <script src="{{ asset('templates/js/classie.js')}}"></script>
+                    <script src="{{ asset('templates/js/uisearch.js')}}"></script>
+                    <script>
+                        new UISearch( document.getElementById( 'sb-search' ) );
+                    </script>
+                    <!----//search-scripts---->
+                    <ul class="icon1 sub-icon1 profile_img">
+                        <li><a class="active-icon c1" href="#"> </a>
+                            <ul class="sub-icon1 list">
+                                <div class="clear"></div>
+                                <li class="list_desc"><h4><a href="#">
+                                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                <li class="profile-pic">
+                                    <a href="javascript:void(0)"> <img src="{{asset ('/photo_membre/' ~ app.user.image ~ '')}}"  class="img-circle" width="36"><span class="hidden-xs hidden-sm">{{ app.user.username|trans({'%username%': app.user.username}, 'FOSUserBundle') }} </span><i class="fa fa-angle-down fa-indicator"></i> </a>
+                                </li>
+                                {% endif %}
+                                </a></h4><span class="actual">
+                         </span></li>
+                                <div class="login_buttons">
+                                    <div class="login_button"><a href="{{ path("fos_user_security_login") }}">Se connecter</a></div>
+                                    <div class="check_button"><a href="{{ path("fos_user_security_logout") }}">Se deconnecter</a></div>
+                                    <div class="login_button"><a href="{{ path("fos_user_registration_register") }}">S'inscrire</a></div>
+                                    <div class="img-responsive"><a herf="{{ ("fos_user_profile_edit") }}"> <img src="{{ asset ('templates/images/edit.png') }}"  alt=""/></a></div>
+</div>
+
+
+                                    <div class="clear"></div>
+                                <div class="clear"></div>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+</div>
+<div class="main">
+    {% block body %}
+    {% endblock %}
+</div>
+<div class="footer">
+    {% block footer %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <ul class="footer_box">
+                        <h4>Famicity Support</h4>
+                        <li><a href="#">Contactez-nous</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <ul class="footer_box">
+                        <h4>Newsletter</h4>
+                        <div class="footer_search">
+                            <form>
+                                <input type="text" value="Entez votre email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Entrez votre email';}">
+                                <input type="submit" value="Go">
+                            </form>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+            <div class="row footer_bottom">
+                <div class="copy">
+                    <p>© 2017 Template by meet your makers</p>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+</div>
+</body>
+</html>
+

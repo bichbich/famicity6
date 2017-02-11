@@ -1,0 +1,41 @@
+{% extends "::base.html.twig" %}
+{% block header %}
+{% endblock %}
+{% block body %}
+<body>
+    <div class="banner">
+        <!-- start slider -->
+        <div id="fwslider">
+            <div class="slider_container">
+                <div class="slide">
+                    <!-- Slide image -->
+                    <img src="{{ asset('templates/images/h0.jpg') }}" class="img-responsive" alt=""/>
+                    <!-- /Slide image -->
+                    <!-- Texts container -->
+                    <div class="slide_content">
+                        <div class="slide_content_wrap">
+                            <!-- Text title -->
+                            <h1 class="title"> FAMICITY</h1>
+                            <!-- /Text title -->
+                            <div class="button1">
+                            <a href=" {{ path('fos_user_security_login') }}">
+                            <input type="submit" value="Se connecter"></a>
+                        </div>
+                            <div class="button1">
+                                <a href=" {{ path('fos_user_registration_register') }}">
+                                    <input type="submit" value="Crée un nouveau compte"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Texts container -->
+                </div>
+            </div>
+
+        </div>
+        <!--/slider -->
+    </div>
+</body>
+
+{% endblock %}
+  {% block footer %}
+  {% endblock %}

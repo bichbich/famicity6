@@ -1,0 +1,28 @@
+{% extends 'MyAppBundle:Default:NosFamilles.html.twig' %}
+
+{% block famille %}
+
+    <table>
+        <tbody>
+            <tr>
+                <td>{{ famille.username }}</td>
+
+
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('famille_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('famille_edit', { 'id': famille.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock famille %}

@@ -1,0 +1,6 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+    vous etes correctement connecté
+    <p><a href=" {{ path('client_page') }}" >acceder a l'espace resérvé au client </a></p>
+    <p><a href=" {{ path('admin_page') }}" >acceder a l'espace resérvé au administrateur </a></p>
+{% endblock %}

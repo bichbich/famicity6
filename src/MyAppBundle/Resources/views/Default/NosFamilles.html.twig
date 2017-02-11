@@ -1,0 +1,43 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+    <div class="main">
+        <div class="shop_top">
+            <div class="container">
+                <div class="row team_box">
+                    <h3 class="m_2">Nos Familles </h3>
+
+                    <table>
+                        <tbody>
+                        <tr>
+                        {% for famille in familles %}
+
+                            <td>
+                                <div style="" >
+                                    <a> <img  src="{{asset ('/photo_membre/' ~ famille.NomdeFamille.image ~ '')}}"  class="img-cadre" width="100"></a>
+
+                                </div>
+
+                            <a>{{ famille.NomdeFamille.Nom }}</a>
+                                <input style="color: #0AA5E2" type="submit" value="Rejoindre" />
+
+                            </td>
+
+
+                        {% endfor %}
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+                <ul>
+                    <li>
+                        <a href="{{ path('famille_new') }}">Create a new famille</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}
